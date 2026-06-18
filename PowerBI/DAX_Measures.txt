@@ -1,0 +1,28 @@
+Total Employees = COUNT(Employees[EmployeeID])
+Active Employees = CALCULATE([Total Employees], Employees[Attrition] = "No")
+Attrition Count = CALCULATE([Total Employees], Employees[Attrition] = "Yes")
+Attrition Rate = DIVIDE([Attrition Count], [Total Employees], 0)
+Average Salary = AVERAGE(Employees[Salary])
+Average Age = AVERAGE(Employees[Age])
+Average Performance Score = AVERAGE(Performance[PerformanceRating])
+Total Training Hours = SUM(Performance[TrainingHours])
+Present Days = CALCULATE(COUNTROWS(Attendance), Attendance[Status] = "Present")
+Total Attendance Records = COUNTROWS(Attendance)
+Attendance Rate = DIVIDE([Present Days], [Total Attendance Records], 0)
+Average Working Hours = AVERAGE(Attendance[WorkingHours])
+
+Tenure Years = DATEDIFF(Employees[HireDate], TODAY(), YEAR)
+
+Age Group = SWITCH(TRUE(), Employees[Age] < 25, "18-25", Employees[Age] < 35, "26-35", Employees[Age] < 45, "36-45", "45+")
+
+Salary Band = SWITCH(TRUE(), Employees[Salary] < 500000, "Low", Employees[Salary] < 1000000, "Medium", "High")
+
+Employee Health Score =
+VAR AttendanceScore = [Attendance Rate] * 40
+VAR PerformanceScore = DIVIDE([Average Performance Score], 5, 0) * 30
+VAR TrainingScore = MIN(DIVIDE([Total Training Hours], 40, 0), 1) * 30
+RETURN AttendanceScore + PerformanceScore + TrainingScore
+
+Risk Level = SWITCH(TRUE(), [Employee Health Score] >= 80, "Low Risk", [Employee Health Score] >= 60, "Medium Risk", "High Risk")
+
+Productivity Index = [Attendance Rate] * [Average Performance Score]
