@@ -1,0 +1,11 @@
+DepartmentID,Department,Manager,Location
+D001,Sales,Rajesh Sharma,Kolkata
+D002,Technology,Ananya Sen,Bengaluru
+D003,Customer Support,Vikram Rao,Hyderabad
+D004,Finance,Meera Kapoor,Mumbai
+D005,Human Resources,Priya Nair,Kolkata
+D006,Marketing,Sanjay Mehta,Delhi
+D007,Operations,Karan Singh,Pune
+D008,Product,Neha Verma,Bengaluru
+D009,Legal,Arjun Patel,Mumbai
+D010,Data Analytics,Rohit Gupta,Kolkata
